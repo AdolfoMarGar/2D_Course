@@ -57,8 +57,7 @@ public class Player : MonoBehaviour
 
         isGrounded = Physics2D.CircleCast(transform.position, radius, Vector3.down, groundRayDist, groundLayer);
 
-        animator.SetBool("IsMoving", isMoving);
-        animator.SetBool("IsGrounded", isGrounded);
+
 
     }
 
@@ -68,6 +67,16 @@ public class Player : MonoBehaviour
 
     }
 
+    private void LateUpdate()
+    {
+        animator.SetBool("isMoving", isMoving);
+        animator.SetBool("isGrounded", isGrounded);
+    }
+
+    void OnDestroy()
+    {
+        player = null;
+    }
     public void jump()
     {
 
@@ -87,10 +96,4 @@ public class Player : MonoBehaviour
                 break;
         }
     }
-
-    void OnDestroy()
-    {
-        player = null;
-    }
-
 }
